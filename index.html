@@ -17,13 +17,65 @@
         </nav>
     </header>
     
-    <section>
-        <h2>Nuestros productos</h2>
-        <p>Descubre la mejor selección de productos para tu mascota.</p>
-    </section>
-    
+    <main>
+        <section>
+            <h2>Nuestros productos</h2>
+            <p>Descubre la mejor selección de productos para tu mascota.</p>
+
+            <!-- Imagen -->
+            <img src="perritos-petshop.jpg" alt="Perritos con bolsas de comida y juguetes" width="400">
+
+            <!-- Tabla de productos -->
+            <h3>Lista de productos destacados</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alimento Premium</td>
+                        <td>Perros</td>
+                        <td>$3500</td>
+                    </tr>
+                    <tr>
+                        <td>Rascador Deluxe</td>
+                        <td>Gatos</td>
+                        <td>$4200</td>
+                    </tr>
+                    <tr>
+                        <td>Jaula Mediana</td>
+                        <td>Aves</td>
+                        <td>$2750</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Formulario -->
+        <section>
+            <h2>Contacto</h2>
+            <form action="#" method="post">
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="mensaje">Mensaje:</label><br>
+                <textarea id="mensaje" name="mensaje" rows="4" cols="40" required></textarea><br><br>
+
+                <input type="submit" value="Enviar">
+            </form>
+        </section>
+    </main>
+
     <footer>
         <p>&copy; 2025 PetShop Online - Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
+
