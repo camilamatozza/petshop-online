@@ -1,90 +1,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetShop Online</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PetShop Online</title>
+  <link rel="stylesheet" href="styless.css" />
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a PetShop Online</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Contacto</a></li>
-                <li><a href="https://instagram.com/petshoponline" target="_blank">Instagram</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <a href="https://instagram.com/petshoponline" target="_blank">
+      <img src="assets/instagram.png" alt="Instagram">
+    </a>
+    <p>10% OFF EN EFECTIVO Y TRANSFERENCIAS | ENVÍOS GRATIS EN CABA Y GBA</p>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo">
+      <img src="assets/patita.png" alt="Logo Patita">
+      <span>PetShop Online</span>
+    </div>
+    <div class="search">
+      <input type="text" placeholder="¿Qué estás buscando?">
+      <button><img src="assets/search.png" alt="Buscar"></button>
+    </div>
+    <div class="user-cart">
+      <img src="assets/user.png" alt="Usuario">
+      <img src="assets/cart.png" alt="Carrito">
+    </div>
+  </header>
+
+  <!-- Navegación -->
+  <nav class="nav-bar">
+    <ul>
+      <li><a href="#">Perros</a></li>
+      <li><a href="#">Gatos</a></li>
+      <li><a href="#">Aves</a></li>
+      <li><a href="#">Roedores</a></li>
+      <li><a href="#">Accesorios</a></li>
+      <li><a href="#">Servicios</a></li>
+    </ul>
+  </nav>
+
+  <!-- Ofertas -->
+  <section class="ofertas">
     
-    <main>
-        <section>
-            <h2>Nuestros productos</h2>
-            <p>Descubre la mejor selección de productos para tu mascota.</p>
+    </div>
+  </section>
+  <section class="ofertas-carousel">
+    <div class="ofertas-intro">
+      <img src="assets/logo.png" alt="Perritos felices">
+    </div>
+  
+    <div class="ofertas-contenido">
+      <h2>Tu mascota feliz es nuestra prioridad</h2>
+      <p class="subtitulo">Las mejores Ofertas</p>
+  
+      <div class="ofertas-productos">
+        <div class="producto">
+          <img src="assets/prod1.png" alt="Ekk">
+          <p>Ekk. Adult Medium - 15kg</p>
+          <span class="precio">$20</span>
+          <button>Añadir al Carrito</button>
+        </div>
+        <div class="producto">
+          <img src="assets/prod2.png" alt="Royal">
+          <p>Royal Canin Gatos - 7kg</p>
+          <span class="precio">$23</span>
+          <button>Añadir al Carrito</button>
+        </div>
+        <div class="producto">
+          <img src="assets/prod3.png" alt="Performance">
+          <p>Performance Adult - 20kg</p>
+          <span class="precio">$24</span>
+          <button>Añadir al Carrito</button>
+        </div>
+        <div class="producto">
+          <img src="assets/prod4.png" alt="Excellent Gatos">
+          <p>Excellent Gatos Adultos - 15kg</p>
+          <span class="precio">$26</span>
+          <button>Añadir al Carrito</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Promociones -->
+  <section class="formulario">
+    <h2>¿Querés recibir nuestras promociones?</h2>
+    <form action="#" method="post">
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="email" name="email" placeholder="Tu email" required />
+      <button type="submit">Suscribirme</button>
+    </form>
+  </section>
 
-            <!-- Imagen -->
-            <img src="assets/perritos-petshop.png" alt="Perritos felices en la veterinaria" width="400">
+  <!-- Contacto -->
+  <section class="contacto">
+    <h2>Contacto</h2>
+    <form action="#" method="post">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
 
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-            <!-- Lista -->
-            <h3>Beneficios de comprar en PetShop Online</h3>
-            <ul>
-                <li>Envío gratis en compras mayores a $5000</li>
-                <li>Atención personalizada para cada mascota</li>
-                <li>Descuentos exclusivos para miembros</li>
-            </ul>
+      <label for="mensaje">Mensaje:</label>
+      <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
 
-            <!-- Tabla de productos -->
-            <h3>Lista de productos destacados</h3>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Categoría</th>
-                        <th>Precio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Alimento Premium</td>
-                        <td>Perros</td>
-                        <td>$3500</td>
-                    </tr>
-                    <tr>
-                        <td>Rascador Deluxe</td>
-                        <td>Gatos</td>
-                        <td>$4200</td>
-                    </tr>
-                    <tr>
-                        <td>Jaula Mediana</td>
-                        <td>Aves</td>
-                        <td>$2750</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
-        <!-- Formulario -->
-        <section>
-            <h2>Contacto</h2>
-            <form action="#" method="post">
-                <label for="nombre">Nombre:</label><br>
-                <input type="text" id="nombre" name="nombre" required><br><br>
-
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" required><br><br>
-
-                <label for="mensaje">Mensaje:</label><br>
-                <textarea id="mensaje" name="mensaje" rows="4" cols="40" required></textarea><br><br>
-
-                <input type="submit" value="Enviar">
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2025 PetShop Online - Todos los derechos reservados.</p>
-    </footer>
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 PetShop Online - Todos los derechos reservados.</p>
+  </footer>
 </body>
 </html>
