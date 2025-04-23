@@ -376,4 +376,34 @@ footer p {
   .subscribe-section {
     width: 100%;
 }
+
+  .map-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+  }
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  iframe {
+    max-width: 100%;
+    height: auto;
+    border: none;
+  }
+  /* Estilo adicional opcional para la sección video + mapa */
+section.container.my-5 {
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
+
+/* Asegura que los iframes no se deformen fuera de Bootstrap */
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+}
+
