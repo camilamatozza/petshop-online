@@ -13,7 +13,8 @@
 - **CSS3** *(en futuras entregas)* → Diseño y presentación visual.  
 - **JavaScript** *(en futuras entregas)* → Funcionalidades interactivas.  
 - **GitHub Pages** → Hosting del sitio.  
-- **Git & GitHub** → Gestión de versiones y colaboración.  
+- **Git & GitHub** → Gestión de versiones y colaboración.
+- **Bootstrap** → Framework para diseño responsivo y componentes predefinidos.
 
 # Funcionalidades Previstas  
 -Catálogo de productos con imágenes y descripciones.  
