@@ -1,63 +1,32 @@
-// Clase Producto
-class Producto {
-  constructor(nombre, precio) {
-    this.nombre = nombre;
-    this.precio = precio;
-  }
+import Producto from './Producto.js';
+import Catalogo from './Catalogo.js';
+import Carrito from './Carrito.js';
 
-  calcularSubtotal(cantidad) {
-    return this.precio * cantidad;
-  }
-}
-
-// Clase Carrito
-class Carrito {
-  constructor() {
-    this.productos = [];
-  }
-
-  agregarProducto(producto, cantidad) {
-    const subtotal = producto.calcularSubtotal(cantidad);
-    this.productos.push({
-      nombre: producto.nombre,
-      precio: producto.precio,
-      cantidad,
-      subtotal
-    });
-  }
-
-  calcularTotal() {
-    return this.productos.reduce((acc, item) => acc + item.subtotal, 0);
-  }
-
-  mostrarResumen() {
-    let mensaje = "🛒 RESUMEN DEL PEDIDO 🛒\n\n";
-    this.productos.forEach(p => {
-      mensaje += `${p.nombre} x${p.cantidad} = $${p.subtotal}\n`;
-    });
-    mensaje += `\nTOTAL: $${this.calcularTotal()}`;
-    alert(mensaje);
-  }
-}
-
-// Lista de productos disponibles
 const listaProductos = [
-  new Producto("Alimento para perro", 3500),
-  new Producto("Juguete de goma", 1200),
-  new Producto("Rascador para gatos", 4200),
-  new Producto("Collar con luz", 2800)
+  new Producto(1, "Alimento para perro", 3500),
+  new Producto(2, "Juguete de goma", 1200),
+  new Producto(3, "Rascador para gatos", 4200),
+  new Producto(4, "Collar con luz", 2800)
 ];
 
-// Mostrar productos al usuario
-function mostrarCatalogo() {
-  let mensaje = "Productos disponibles:\n";
-  listaProductos.forEach((p, i) => {
-    mensaje += `${i + 1}. ${p.nombre} - $${p.precio}\n`;
-  });
-  alert(mensaje);
+const catalogo = new Catalogo(listaProductos);
+
+function solicitarProductoIndex(productos) {
+  const input = prompt("Ingresá el número del producto que querés agregar:");
+  if (input === null) return null;
+  const index = parseInt(input);
+  if (isNaN(index) || index < 1 || index > productos.length) return -1;
+  return index - 1;
 }
 
-// Simulador de compra
+function solicitarCantidadProducto(nombreProducto) {
+  const input = prompt(`¿Cuántas unidades de "${nombreProducto}" querés?`);
+  if (input === null) return null;
+  const cantidad = parseInt(input);
+  if (isNaN(cantidad) || cantidad <= 0) return -1;
+  return cantidad;
+}
+
 function simuladorDeCompra() {
   const carrito = new Carrito();
   let seguir = true;
@@ -65,22 +34,25 @@ function simuladorDeCompra() {
   alert("Bienvenido al simulador de PetShop Online 🐾");
 
   while (seguir) {
-    mostrarCatalogo();
-    const opcion = parseInt(prompt("Ingresá el número del producto que querés agregar:"));
+    catalogo.mostrarCatalogo();
+    const index = solicitarProductoIndex(listaProductos);
 
-    if (opcion >= 1 && opcion <= listaProductos.length) {
-      const productoSeleccionado = listaProductos[opcion - 1];
-      const cantidad = parseInt(prompt(`¿Cuántas unidades de "${productoSeleccionado.nombre}" querés?`));
-
-      if (!isNaN(cantidad) && cantidad > 0) {
-        carrito.agregarProducto(productoSeleccionado, cantidad);
-      } else {
-        alert("⚠️ Cantidad inválida.");
-      }
-    } else {
+    if (index === null) break;
+    if (index === -1) {
       alert("⚠️ Producto no válido.");
+      continue;
     }
 
+    const productoSeleccionado = catalogo.obtenerProductoPorIndice(index);
+    const cantidad = solicitarCantidadProducto(productoSeleccionado.nombre);
+
+    if (cantidad === null) break;
+    if (cantidad === -1) {
+      alert("⚠️ Cantidad inválida.");
+      continue;
+    }
+
+    carrito.agregarProducto(productoSeleccionado, cantidad);
     seguir = confirm("¿Querés agregar otro producto?");
   }
 
@@ -92,3 +64,5 @@ function simuladorDeCompra() {
 
   console.log("Detalle del carrito:", carrito.productos);
 }
+
+simuladorDeCompra();
