@@ -13,12 +13,17 @@ const listaProductos = [
 // Instancia del catálogo
 const catalogo = new Catalogo(listaProductos);
 
-// Muestra el catálogo ANTES de pedir el número
+// Muestra el catálogo y pide el número en el mismo prompt
 function solicitarProductoIndex(productos) {
-  const mensajeCatalogo = catalogo.generarCatalogoTexto();
-  alert("📦 Productos disponibles:\n\n" + mensajeCatalogo);
+  let mensaje = "📦 Productos disponibles:\n\n";
 
-  const input = prompt("Ingresá el número del producto que querés agregar:");
+  productos.forEach((producto, index) => {
+    mensaje += `${index + 1}. ${producto.nombre} - $${producto.precio}\n`;
+  });
+
+  mensaje += "\nIngresá el número del producto que querés agregar:";
+  const input = prompt(mensaje);
+
   if (input === null) return null;
 
   const index = parseInt(input);
@@ -72,4 +77,5 @@ function simuladorDeCompra() {
   }
 }
 
+// Hacemos la función accesible desde el botón en HTML
 window.simuladorDeCompra = simuladorDeCompra;
