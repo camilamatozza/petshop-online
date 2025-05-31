@@ -139,10 +139,29 @@
     </section>
 <section class="container text-center my-5">
   <h2>Simulador de Compra</h2>
-  <p>Hacé clic para calcular el total de tu pedido:</p>
-  <button type="button" class="btn btn-primary" onclick="simuladorDeCompra()">
-    Simular Pedido
-  </button>
+  <p>Completá los datos para calcular el total de tu pedido:</p>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <label for="producto" class="form-label">Producto</label>
+        <select id="producto" class="form-select">
+          <option value="1">Alimento Premium</option>
+          <option value="2">Juguete de goma</option>
+          <option value="3">Collar reforzado</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="number" id="cantidad" class="form-control" value="1" min="1">
+      </div>
+
+      <button id="btnCalcular" class="btn btn-primary">Calcular Total</button>
+
+      <div id="resultado" class="mt-4"></div>
+    </div>
+  </div>
 </section>
 
     <!-- Sección Video + Mapa -->
