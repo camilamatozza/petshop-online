@@ -10,6 +10,10 @@ class Catalogo {
   obtenerProductoPorIndice(indice) {
     return this.productos[indice];
   }
+
+  buscarProductoPorId(id) {
+    return this.productos.find(p => p.id === id);
+  }
 }
 
 export default Catalogo;
