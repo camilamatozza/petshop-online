@@ -9,10 +9,7 @@ class Carrito {
       existente.cantidad += cantidad;
       existente.subtotal = existente.precio * existente.cantidad;
     } else {
-      const subtotal = producto.calcularSubtotal
-        ? producto.calcularSubtotal(cantidad)
-        : producto.precio * cantidad;
-
+      const subtotal = producto.precio * cantidad;
       this.productos.push({
         id: producto.id,
         nombre: producto.nombre,
@@ -23,19 +20,38 @@ class Carrito {
     }
   }
 
+  eliminarProductoPorId(id) {
+    this.productos = this.productos.filter(p => p.id !== id);
+  }
+
   calcularTotal() {
     return this.productos.reduce((acc, p) => acc + p.subtotal, 0);
   }
 
-  obtenerResumenHTML() {
-    if (this.productos.length === 0) return "<p>El carrito está vacío.</p>";
+  tieneProductos() {
+    return this.productos.length > 0;
+  }
 
-    let html = "<ul class='list-group'>";
-    this.productos.forEach(p => {
-      html += `<li class='list-group-item'>${p.nombre} x${p.cantidad} = $${p.subtotal}</li>`;
-    });
-    html += `</ul><p class='mt-3'><strong>Total: $${this.calcularTotal()}</strong></p>`;
-    return html;
+  listarProductos() {
+    if (!this.tieneProductos()) return "El carrito está vacío.";
+    return this.productos.map(p =>
+      `${p.nombre} x${p.cantidad} = $${p.subtotal}`
+    ).join("\n");
+  }
+
+  obtenerResumen() {
+    return {
+      productos: this.productos.map(p => ({
+        nombre: p.nombre,
+        cantidad: p.cantidad,
+        subtotal: p.subtotal
+      })),
+      total: this.calcularTotal()
+    };
+  }
+
+  vaciarCarrito() {
+    this.productos = [];
   }
 }
 
