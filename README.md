@@ -32,3 +32,8 @@ Podés visualizar el diseño planeado en el siguiente enlace:
 El diagrama representa el algoritmo principal del simulador de pedidos:  
 🔗 [Ver diagrama de flujo](https://drive.google.com/file/d/1q2cqQs6hwAw3JRMInMDA0-t2IE-D9KSC/view?usp=sharing)
 
+## Diagrama de Clases
+El siguiente diagrama representa la estructura de clases del simulador.
+https://drive.google.com/file/d/1a8twwUhUJHRk53-jaSaoqoGveBUfsX4e/view?usp=drive_link
+
+
