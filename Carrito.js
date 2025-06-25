@@ -20,9 +20,13 @@ class Carrito {
     }
   }
 
-  eliminarProductoPorId(id) {
-    this.productos = this.productos.filter(p => p.id !== id);
+eliminarProducto(id) {
+  const index = this.productos.findIndex(p => p.id === id);
+  if (index !== -1) {
+    this.productos.splice(index, 1);
   }
+}
+
 
   calcularTotal() {
     return this.productos.reduce((acc, p) => acc + p.subtotal, 0);

@@ -59,7 +59,7 @@ function actualizarVistaCarrito() {
 });
 ul.querySelectorAll('button[data-id]').forEach(btn => {
   btn.addEventListener('click', (e) => {
-    const id = parseInt(e.target.getAttribute('data-id'));
+    const id = parseInt(e.currentTarget.getAttribute('data-id'));
     carrito.eliminarProducto(id);
     localStorage.setItem('carrito', JSON.stringify(carrito.productos));
     actualizarVistaCarrito();
