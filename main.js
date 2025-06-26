@@ -15,6 +15,7 @@ carrito.cargar();
 document.addEventListener('DOMContentLoaded', () => {
   const resultado = document.getElementById('resultado');
 
+  // Render dinámico
   catalogo.renderizarEnContenedor('contenedor-productos', (producto, cantidad) => {
     if (!producto || cantidad <= 0 || isNaN(cantidad)) {
       resultado.innerHTML = `<p class="text-danger">Seleccioná una cantidad válida.</p>`;
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarVistaCarrito();
   });
 
+  // Productos estáticos del carrusel
   document.querySelectorAll('.producto .add-cart-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const card = e.target.closest('.producto');
@@ -44,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  actualizarVistaCarrito(); 
+  actualizarVistaCarrito();
 });
 
 function actualizarVistaCarrito() {
@@ -58,10 +60,7 @@ function actualizarVistaCarrito() {
     return;
   }
 
-  // 🔁 Recalcula subtotal de cada producto antes de renderizar
-  carrito.productos.forEach(p => {
-    p.calcularSubtotal(p.cantidad);
-  });
+  carrito.productos.forEach(p => p.calcularSubtotal(p.cantidad));
 
   const ul = document.createElement('ul');
   ul.className = 'list-group';
@@ -70,20 +69,18 @@ function actualizarVistaCarrito() {
     const li = document.createElement('li');
     li.className = 'list-group-item d-flex justify-content-between align-items-center';
 
-    const texto = document.createElement('span');
-    texto.textContent = `${p.nombre} x${p.cantidad} = $${p.subtotal}`;
+    const span = document.createElement('span');
+    span.textContent = `${p.nombre} x${p.cantidad} = $${p.subtotal}`;
 
     const boton = document.createElement('button');
     boton.className = 'btn btn-sm btn-danger';
     boton.textContent = '🗑';
-    boton.setAttribute('data-id', p.id);
-
     boton.addEventListener('click', () => {
       carrito.eliminarProducto(p.id);
       actualizarVistaCarrito();
     });
 
-    li.appendChild(texto);
+    li.appendChild(span);
     li.appendChild(boton);
     ul.appendChild(li);
   });
