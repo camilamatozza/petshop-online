@@ -1,12 +1,16 @@
 class Producto {
-  constructor(id, nombre, precio) {
+  constructor(id, nombre, precio, imagen) {
     this.id = id;
-    this.nombre = nombre.toUpperCase();
+    this.nombre = nombre; 
     this.precio = parseFloat(precio);
+    this.imagen = imagen; 
+    this.cantidad = 0;         
+    this.subtotal = 0;   
   }
 
   calcularSubtotal(cantidad) {
-    return this.precio * cantidad;
+    this.cantidad = cantidad;
+    this.subtotal = this.precio * cantidad;
   }
 }
 
