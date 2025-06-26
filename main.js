@@ -3,46 +3,6 @@ import Catalogo from './Catalogo.js';
 import Carrito from './Carrito.js';
 
 const catalogo = new Catalogo([
-<<<<<<< HEAD
-  new Producto(1, "Alimento para perro", 3500),
-  new Producto(2, "Juguete de goma", 1200),
-  new Producto(3, "Rascador para gatos", 4200),
-  new Producto(4, "Collar con luz", 2800)
-]);
-
-const carrito = new Carrito();
-
-document.addEventListener('DOMContentLoaded', () => {
-  const select = document.getElementById('producto');
-  const cantidad = document.getElementById('cantidad');
-  const btn = document.getElementById('btnCalcular');
-  const resultado = document.getElementById('resultado');
-
-  btn.addEventListener('click', () => {
-    const id = parseInt(select.value);
-    const cant = parseInt(cantidad.value);
-
-    const producto = catalogo.buscarProductoPorId(id);
-    if (!producto || cant <= 0 || isNaN(cant)) {
-      resultado.innerHTML = `<p class="text-danger">Por favor seleccioná un producto y cantidad válida.</p>`;
-      return;
-    }
-
-    carrito.agregarProducto(producto, cant);
-
-    // Guardar en Storage
-    localStorage.setItem('carrito', JSON.stringify(carrito.productos));
-
-    const total = carrito.calcularTotal();
-
-    resultado.innerHTML = `
-      <p>Producto: <strong>${producto.nombre}</strong></p>
-      <p>Cantidad: <strong>${cant}</strong></p>
-      <p>Total acumulado: <strong>$${total}</strong></p>
-    `;
-  });
-});
-=======
   new Producto(1, "Alimento para perro", 3500, "assets/alimento-perro.png"),
   new Producto(2, "Juguete de goma", 1200, "assets/juguete-goma.png"),
   new Producto(3, "Rascador para gatos", 4200, "assets/rascador-gatos.png"),
@@ -55,7 +15,7 @@ carrito.cargar();
 document.addEventListener('DOMContentLoaded', () => {
   const resultado = document.getElementById('resultado');
 
-  // Render dinámico
+  // Render dinámico de productos
   catalogo.renderizarEnContenedor('contenedor-productos', (producto, cantidad) => {
     if (!producto || cantidad <= 0 || isNaN(cantidad)) {
       resultado.innerHTML = `<p class="text-danger">Seleccioná una cantidad válida.</p>`;
@@ -131,4 +91,3 @@ function actualizarVistaCarrito() {
   resultado.appendChild(ul);
   resultado.appendChild(total);
 }
->>>>>>> 8c686a73b625e93639d31e8719e0026051ae092e

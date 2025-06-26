@@ -11,21 +11,16 @@ class Carrito {
       existente.cantidad += cantidad;
       existente.calcularSubtotal(existente.cantidad);
     } else {
-<<<<<<< HEAD
-      const subtotal = producto.calcularSubtotal
-        ? producto.calcularSubtotal(cantidad)
-        : producto.precio * cantidad;
+      const nuevoProducto = new Producto(
+        producto.id,
+        producto.nombre,
+        producto.precio,
+        producto.imagen
+      );
+      nuevoProducto.cantidad = cantidad;
+      nuevoProducto.calcularSubtotal(cantidad);
 
-      this.productos.push({
-        id: producto.id,
-        nombre: producto.nombre,
-        precio: producto.precio,
-        cantidad,
-        subtotal
-      });
-=======
-      producto.calcularSubtotal(cantidad);
-      this.productos.push(producto);
+      this.productos.push(nuevoProducto);
     }
     this.guardar();
   }
@@ -35,7 +30,6 @@ class Carrito {
     if (index !== -1) {
       this.productos.splice(index, 1);
       this.guardar();
->>>>>>> 8c686a73b625e93639d31e8719e0026051ae092e
     }
   }
 
@@ -43,26 +37,15 @@ class Carrito {
     return this.productos.reduce((acc, p) => acc + p.subtotal, 0);
   }
 
-<<<<<<< HEAD
-  obtenerResumenHTML() {
-    if (this.productos.length === 0) return "<p>El carrito está vacío.</p>";
-
-    let html = "<ul class='list-group'>";
-    this.productos.forEach(p => {
-      html += `<li class='list-group-item'>${p.nombre} x${p.cantidad} = $${p.subtotal}</li>`;
-    });
-    html += `</ul><p class='mt-3'><strong>Total: $${this.calcularTotal()}</strong></p>`;
-    return html;
-=======
   tieneProductos() {
     return this.productos.length > 0;
   }
 
   listarProductos() {
     if (!this.tieneProductos()) return "El carrito está vacío.";
-    return this.productos.map(p =>
-      `${p.nombre} x${p.cantidad} = $${p.subtotal}`
-    ).join("\n");
+    return this.productos
+      .map(p => `${p.nombre} x${p.cantidad} = $${p.subtotal}`)
+      .join("\n");
   }
 
   obtenerResumen() {
@@ -74,6 +57,17 @@ class Carrito {
       })),
       total: this.calcularTotal()
     };
+  }
+
+  obtenerResumenHTML() {
+    if (this.productos.length === 0) return "<p>El carrito está vacío.</p>";
+
+    let html = "<ul class='list-group'>";
+    this.productos.forEach(p => {
+      html += `<li class='list-group-item'>${p.nombre} x${p.cantidad} = $${p.subtotal}</li>`;
+    });
+    html += `</ul><p class='mt-3'><strong>Total: $${this.calcularTotal()}</strong></p>`;
+    return html;
   }
 
   vaciarCarrito() {
@@ -91,11 +85,11 @@ class Carrito {
       const cargados = JSON.parse(guardado);
       this.productos = cargados.map(p => {
         const producto = new Producto(p.id, p.nombre, p.precio, p.imagen);
+        producto.cantidad = p.cantidad;
         producto.calcularSubtotal(p.cantidad);
         return producto;
       });
     }
->>>>>>> 8c686a73b625e93639d31e8719e0026051ae092e
   }
 }
 

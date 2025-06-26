@@ -14,43 +14,38 @@ class Catalogo {
     const nuevoProducto = new Producto(id, nombre, precio, imagen);
     this.productos.push(nuevoProducto);
   }
+buscarProductoPorId(id) {
+  return this.productos.find(p => p.id === id);
+}
 
-<<<<<<< HEAD
-  buscarProductoPorId(id) {
-    return this.productos.find(p => p.id === id);
-  }
-=======
-  listarProductos() {
-    if (!this.tieneProductos()) return "El catálogo está vacío.";
-    return this.productos.map(p =>
-      `${p.id}. ${p.nombre} - $${p.precio}`
-    ).join("\n");
-  }
+listarProductos() {
+  if (!this.tieneProductos()) return "El catálogo está vacío.";
+  return this.productos.map(p =>
+    `${p.id}. ${p.nombre} - $${p.precio}`
+  ).join("\n");
+}
 
-  buscarProductoPorId(id) {
-    return this.productos.find(p => p.id === id);
-  }
+filtrarPorNombre(nombre) {
+  const encontrados = this.productos.filter(p =>
+    p.nombre.toLowerCase().includes(nombre.toLowerCase())
+  );
+  if (encontrados.length === 0) return "No se encontraron productos.";
+  return encontrados.map(p =>
+    `${p.id}. ${p.nombre} - $${p.precio}`
+  ).join("\n");
+}
 
-  filtrarPorNombre(nombre) {
-    const encontrados = this.productos.filter(p =>
-      p.nombre.toLowerCase().includes(nombre.toLowerCase())
-    );
-    if (encontrados.length === 0) return "No se encontraron productos.";
-    return encontrados.map(p =>
-      `${p.id}. ${p.nombre} - $${p.precio}`
-    ).join("\n");
-  }
+ordenarPorPrecio(ascendente = true) {
+  this.productos.sort((a, b) =>
+    ascendente ? a.precio - b.precio : b.precio - a.precio
+  );
+  return this.listarProductos();
+}
 
-  ordenarPorPrecio(ascendente = true) {
-    this.productos.sort((a, b) =>
-      ascendente ? a.precio - b.precio : b.precio - a.precio
-    );
-    return this.listarProductos();
-  }
+tieneProductos() {
+  return this.productos.length > 0;
+}
 
-  tieneProductos() {
-    return this.productos.length > 0;
-  }
 renderizarEnContenedor(idContenedor, callback) {
   const contenedor = document.getElementById(idContenedor);
   contenedor.innerHTML = "";
@@ -103,7 +98,6 @@ renderizarEnContenedor(idContenedor, callback) {
     col.appendChild(card);
     contenedor.appendChild(col);
   });
->>>>>>> 8c686a73b625e93639d31e8719e0026051ae092e
 }
-} 
+}
 export default Catalogo;
