@@ -5,6 +5,10 @@ class Catalogo {
     this.productos = productos;
   }
 
+  buscarPorNombre(nombre) {
+    return this.productos.find(p => p.nombre === nombre.toUpperCase());
+  }
+
   agregarProducto(nombre, precio, imagen) {
     const id = this.productos.length + 1;
     const nuevoProducto = new Producto(id, nombre, precio, imagen);
@@ -43,36 +47,32 @@ class Catalogo {
     return this.productos.length > 0;
   }
 
-  renderizarEnContenedor(idContenedor, callbackAgregar) {
+  renderizarEnContenedor(idContenedor, callback) {
     const contenedor = document.getElementById(idContenedor);
-    contenedor.innerHTML = '';
+    contenedor.innerHTML = "";
 
     this.productos.forEach(producto => {
-      const col = document.createElement('div');
-      col.className = 'col';
+      const col = document.createElement("div");
+      col.className = "col";
 
       col.innerHTML = `
-        <div class="producto text-center p-3 border rounded h-100 d-flex flex-column justify-content-between">
-          <img src="assets/${producto.imagen}" alt="${producto.nombre}" class="img-fluid mb-2">
-          <p class="product-name">${producto.nombre}</p>
-          <p class="text-danger fw-bold">$${producto.precio}</p>
-          <div class="input-group">
-            <input type="number" min="1" value="1" class="form-control cantidad-input">
-            <button class="btn btn-danger btn-sm">Añadir</button>
+        <div class="card h-100 text-center">
+          <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
+          <div class="card-body">
+            <h5 class="card-title">${producto.nombre}</h5>
+            <p class="card-text text-danger fw-bold">$${producto.precio}</p>
+            <input type="number" min="1" value="1" class="form-control mb-2 cantidad-input">
+            <button class="btn btn-danger w-100">Añadir</button>
           </div>
         </div>
       `;
 
-      const btn = col.querySelector('button');
-      const inputCantidad = col.querySelector('.cantidad-input');
+      const btn = col.querySelector("button");
+      const input = col.querySelector("input");
 
-      btn.addEventListener('click', () => {
-        const cantidad = parseInt(inputCantidad.value);
-        if (cantidad > 0 && !isNaN(cantidad)) {
-          callbackAgregar(producto, cantidad);
-        } else {
-          alert("Ingresá una cantidad válida.");
-        }
+      btn.addEventListener("click", () => {
+        const cantidad = parseInt(input.value);
+        callback(producto, cantidad);
       });
 
       contenedor.appendChild(col);

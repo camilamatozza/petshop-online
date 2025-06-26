@@ -3,11 +3,13 @@ class Producto {
     this.id = id;
     this.nombre = nombre.toUpperCase();
     this.precio = parseFloat(precio);
-    this.imagen = imagen;
+    this.imagen = imagen; 
+    this.cantidad = 0;         
+    this.subtotal = 0;   
   }
-
-  calcularSubtotal(cantidad) {
-    return this.precio * cantidad;
+    calcularSubtotal(cantidad) {
+    this.cantidad = cantidad;
+    this.subtotal = this.precio * cantidad;
   }
 }
 export default Producto;
