@@ -46,38 +46,58 @@ class Catalogo {
   tieneProductos() {
     return this.productos.length > 0;
   }
+renderizarEnContenedor(idContenedor, callback) {
+  const contenedor = document.getElementById(idContenedor);
+  contenedor.innerHTML = "";
 
-  renderizarEnContenedor(idContenedor, callback) {
-    const contenedor = document.getElementById(idContenedor);
-    contenedor.innerHTML = "";
+  this.productos.forEach(producto => {
+    const col = document.createElement("div");
+    col.className = "col";
 
-    this.productos.forEach(producto => {
-      const col = document.createElement("div");
-      col.className = "col";
+    const card = document.createElement("div");
+    card.className = "card h-100 text-center";
 
-      col.innerHTML = `
-        <div class="card h-100 text-center">
-          <img src="${producto.imagen}" class="card-img-top" alt="${producto.nombre}">
-          <div class="card-body">
-            <h5 class="card-title">${producto.nombre}</h5>
-            <p class="card-text text-danger fw-bold">$${producto.precio}</p>
-            <input type="number" min="1" value="1" class="form-control mb-2 cantidad-input">
-            <button class="btn btn-danger w-100">Añadir</button>
-          </div>
-        </div>
-      `;
+    const img = document.createElement("img");
+    img.src = producto.imagen;
+    img.alt = producto.nombre;
+    img.className = "card-img-top";
 
-      const btn = col.querySelector("button");
-      const input = col.querySelector("input");
+    const body = document.createElement("div");
+    body.className = "card-body";
 
-      btn.addEventListener("click", () => {
-        const cantidad = parseInt(input.value);
-        callback(producto, cantidad);
-      });
+    const h5 = document.createElement("h5");
+    h5.className = "card-title";
+    h5.textContent = producto.nombre;
 
-      contenedor.appendChild(col);
+    const precio = document.createElement("p");
+    precio.className = "card-text text-danger fw-bold";
+    precio.textContent = `$${producto.precio}`;
+
+    const input = document.createElement("input");
+    input.type = "number";
+    input.min = "1";
+    input.value = "1";
+    input.className = "form-control mb-2 cantidad-input";
+
+    const boton = document.createElement("button");
+    boton.className = "btn btn-danger w-100";
+    boton.textContent = "Añadir";
+
+    boton.addEventListener("click", () => {
+      const cantidad = parseInt(input.value);
+      callback(producto, cantidad);
     });
-  }
-}
 
+    body.appendChild(h5);
+    body.appendChild(precio);
+    body.appendChild(input);
+    body.appendChild(boton);
+
+    card.appendChild(img);
+    card.appendChild(body);
+    col.appendChild(card);
+    contenedor.appendChild(col);
+  });
+}
+} 
 export default Catalogo;

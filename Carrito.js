@@ -1,19 +1,22 @@
+import Producto from './Producto.js';
+
 class Carrito {
   constructor() {
     this.productos = [];
   }
-agregarProducto(producto, cantidad) {
-  const existente = this.productos.find(p => p.id === producto.id);
-  if (existente) {
-    existente.cantidad += cantidad;
-    existente.calcularSubtotal(existente.cantidad);
-  } else {
-    producto.calcularSubtotal(cantidad);
-    this.productos.push(producto);
-    this.guardar();
+
+  agregarProducto(producto, cantidad) {
+    const existente = this.productos.find(p => p.id === producto.id);
+    if (existente) {
+      existente.cantidad += cantidad;
+      existente.calcularSubtotal(existente.cantidad);
+    } else {
+      producto.calcularSubtotal(cantidad);
+      this.productos.push(producto);
     }
+    this.guardar();
   }
- 
+
   eliminarProducto(id) {
     const index = this.productos.findIndex(p => p.id === id);
     if (index !== -1) {
@@ -60,7 +63,12 @@ agregarProducto(producto, cantidad) {
   cargar() {
     const guardado = localStorage.getItem('carrito');
     if (guardado) {
-      this.productos = JSON.parse(guardado);
+      const cargados = JSON.parse(guardado);
+      this.productos = cargados.map(p => {
+        const producto = new Producto(p.id, p.nombre, p.precio, p.imagen);
+        producto.calcularSubtotal(p.cantidad);
+        return producto;
+      });
     }
   }
 }
