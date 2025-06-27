@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "nombre": "Alimento para perro",
+    "precio": 3500,
+    "imagen": "assets/alimento-perro.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Juguete de goma",
+    "precio": 1200,
+    "imagen": "assets/juguete-goma.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Rascador para gatos",
+    "precio": 4200,
+    "imagen": "assets/rascador-gatos.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Collar con luz",
+    "precio": 2800,
+    "imagen": "assets/collar-luz.png"
+  }
+]
